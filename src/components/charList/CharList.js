@@ -20,7 +20,7 @@ const CharList = (props) => {
         onRequest(offset, true);
     }, []);
 
-    const onRequest = (offset, initial) =>{
+    const onRequest = (offset, initial) => {
         initial ? setNewItemLoading(false) : setNewItemLoading(true);
         getAllCharacters(offset)
             .then(onCharListLoaded);
@@ -31,7 +31,6 @@ const CharList = (props) => {
         if(newCharList.length < 9){
             ended = true;
         }
-
         setCharList(charList => [...charList, ...newCharList]);
         setNewItemLoading(newItemLoading => false);
         setOffset(offset => offset + 9);
@@ -47,8 +46,10 @@ const CharList = (props) => {
     }
 
     function renderItems(charList){
+        console.log('renderItems')
             const items = charList.map((char, i) => {
                 const {id, name, thumbnail} = char;
+
                 let imgStyle = {'objectFit': 'cover'}
                 if(char.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg'){
                     imgStyle = {'objectFit' : 'contain'};
