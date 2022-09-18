@@ -27,9 +27,16 @@ class CharList extends Component {
             loading: false,
             charList: charList.map(char => {
                 const {id, name, thumbnail} = char;
+                let imgStyle = {'objectFit': 'cover'}
+                if(char.thumbnail === 'http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg'){
+                    imgStyle = {'objectFit' : 'contain'};
+                }
                 return (
-                    <li className="char__item char__item_selected" key={id}>
-                        <img src={thumbnail} alt={name}/>
+                    <li 
+                    className="char__item char__item_selected" 
+                    key={id}
+                    onClick={() => this.props.onCharSelected(id)}>
+                        <img src={thumbnail} alt={name} style={imgStyle}/>
                         <div className="char__name">{name}</div>
                     </li>
                 )
